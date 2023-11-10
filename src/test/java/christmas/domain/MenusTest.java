@@ -11,4 +11,9 @@ public class MenusTest {
     void dessertTest() {
         assertThat(Menus.getCateogoryByNames("초코케이크")).isEqualTo("디저트");
     }
+    @Test
+    @DisplayName("해산물파스타를 2개 구매한 경우 count 항목이 2를 반환해야한다")
+    void countUpdateTest() {
+        assertThat(Menus.updateCount("해산물파스타", 2).getCount()).isEqualTo(2);
+    }
 }
