@@ -4,6 +4,9 @@ import christmas.domain.User;
 
 public class DdayDiscount {
     public static int calcDday(User user) {
-        return (user.getDate() -1) *100 + 1000;
+        if (user.getDate() <= 25) {
+            return (user.getDate() -1) *100 + 1000;
+        }
+        return 0;
     }
 }
