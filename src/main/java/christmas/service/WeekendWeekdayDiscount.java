@@ -9,9 +9,9 @@ import java.util.List;
 
 public class WeekendWeekdayDiscount {
     private static final List<Integer> mainMenuDiscount = new ArrayList<>(Arrays.asList(1, 2, 8, 9, 15, 16, 22, 23, 29, 30));
-    public static void whichDiscountAvailable(int date, User user) {
-        List<Menus> menus = user.getOrderedMenus;
-        if (mainMenuDiscount.contains(date)) {
+    public static void whichDiscountAvailable(User user) {
+        List<Menus> menus = user.getOrderedMenus();
+        if (mainMenuDiscount.contains(user.getDate())) {
             weekendsDiscount(menus);
         }
         weekdaysDiscount(menus);
