@@ -1,12 +1,14 @@
 package christmas.service;
 
+import christmas.domain.DiscountHistory;
 import christmas.domain.User;
 
 public class DdayDiscount {
-    public static int calcDday(User user) {
+    public static DiscountHistory calcDday(User user, DiscountHistory discountHistory) {
         if (user.getDate() <= 25) {
-            return (user.getDate() -1) *100 + 1000;
+            discountHistory.updateDday((user.getDate()-1)*100 +1000);
+            return discountHistory;
         }
-        return 0;
+        return discountHistory;
     }
 }
