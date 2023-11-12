@@ -45,4 +45,16 @@ public class UserTest {
         assertThatThrownBy(() -> MenuException.generateForm(orders))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @Test
+    @DisplayName("user 객체에서 특별할인에 접근할 시 1000원을 반환한다.")
+    void discountListTest() {
+        List<Menus> menus;
+        String orders = "타파스-1,제로콜라-1";
+        menus = MenuException.generateForm(orders);
+        User user = new User(24, menus);
+
+        user.moreDiscount(1000,"특별");
+        assertThat(user.getDiscountAmountForOption("특별")).isEqualTo(1000);
+    }
+
 }
