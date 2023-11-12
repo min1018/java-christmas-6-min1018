@@ -34,7 +34,7 @@ public enum DiscountOption {
 
     public static DiscountOption fromString(String whichDiscount) {
         if ("증정".equals(whichDiscount)) {
-            return specialDiscount;
+            return bonusDiscount;
         }
         if ("주말".equals(whichDiscount)) {
             return weekendDiscount;
