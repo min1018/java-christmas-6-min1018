@@ -44,18 +44,19 @@ public class User {
         return userDiscount;
     }
 
-//    public List<Menus> orderedMenus(String menuName, int count) {
-//        Menus menu = Menus.updateCount(menuName, count);
-//        orderedMenus.add(menu);
-//        return orderedMenus;
-//    }
-//
-//    public int getTotalAmountMenu(List<Menus> menus) {
-//        int totalCount = 0;
-//        for (Menus menu : menus) {
-//            totalCount += menu.getCount();
-//        }
-//        return totalCount;
-//    }
+    public List<Menus> orderedMenus(String menuName, int count) {
+        Menus menu = Menus.valueOf(menuName);
+        menu.updateCount(count);
+        orderedMenus.add(menu);
+        return orderedMenus;
+    }
+
+    public int getTotalAmountMenu(List<Menus> menus) {
+        int totalCount = 0;
+        for (Menus menu : menus) {
+            totalCount += menu.getCount();
+        }
+        return totalCount;
+    }
 
 }
