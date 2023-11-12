@@ -1,26 +1,35 @@
 package christmas.domain;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum DiscountOption {
-    dDayDiscount("디데이",0),
-    bonusDiscount("증정",0),
-    weekdayDiscount("평일",0),
-    weekendDiscount("주말",0),
-    specialDiscount("특별",0);
+    dDayDiscount("디데이"),
+    bonusDiscount("증정"),
+    weekdayDiscount("평일"),
+    weekendDiscount("주말"),
+    specialDiscount("특별");
 
     private final String whichDiscount;
-    private int discountAmount;
+    private static Map<String, Integer> discountAndAmounts = new HashMap<>();
 
-    DiscountOption(String whichDiscount, int DiscountAmount) {
+    static {
+        discountAndAmounts.put("디데이", 0);
+        discountAndAmounts.put("증정", 0);
+        discountAndAmounts.put("평일", 0);
+        discountAndAmounts.put("주말", 0);
+        discountAndAmounts.put("특별", 0);
+    }
+    DiscountOption(String whichDiscount) {
         this.whichDiscount = whichDiscount;
-        this.discountAmount = DiscountAmount;
     }
 
     public int getDiscountAmount() {
-        return discountAmount;
+        return discountAndAmounts.get(whichDiscount);
     }
     public void changeDiscountAmount(int discountAmount) {
-        this.discountAmount = discountAmount;
+        discountAndAmounts.put(whichDiscount, discountAmount);
     }
 
     public static DiscountOption fromString(String whichDiscount) {
