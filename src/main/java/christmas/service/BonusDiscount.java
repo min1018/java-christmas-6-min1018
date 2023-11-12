@@ -1,10 +1,14 @@
 package christmas.service;
 
+import christmas.domain.DiscountHistory;
+import christmas.domain.User;
+
 public class BonusDiscount {
-    public static boolean isAvaliable(int totalPayment) {
-        if(totalPayment > 120000) {
-            return true;
+    public static DiscountHistory isAvaliable(User user, DiscountHistory discountHistory) {
+        if(user.getTotalOrderBeforeDiscount() > 120000) {
+            discountHistory.updateBonus(25000);
+            return discountHistory;
         }
-        return false;
+        return discountHistory;
     }
 }
