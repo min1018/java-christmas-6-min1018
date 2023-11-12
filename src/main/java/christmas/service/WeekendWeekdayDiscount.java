@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.DiscountHistory;
 import christmas.domain.Menus;
 import christmas.domain.User;
 
@@ -9,31 +10,34 @@ import java.util.List;
 
 public class WeekendWeekdayDiscount {
     private static final List<Integer> mainMenuDiscount = new ArrayList<>(Arrays.asList(1, 2, 8, 9, 15, 16, 22, 23, 29, 30));
-    public static int whichDiscountAvailable(User user) {
+    public static DiscountHistory whichDiscountAvailable(User user, DiscountHistory discountHistory) {
         List<Menus> menus = user.getOrderedMenus();
+
         if (mainMenuDiscount.contains(user.getDate())) {
-            return weekendsDiscount(menus);
+            return weekendsDiscount(discountHistory, menus);
         }
-        return weekdaysDiscount(menus);
+        return weekdaysDiscount(discountHistory,menus);
     }
 
-    private static int weekdaysDiscount(List<Menus> menus) {
+    private static DiscountHistory weekdaysDiscount(DiscountHistory discountHistory,List<Menus> menus) {
         int totalDiscount = 0;
         for(Menus menu : menus) {
             if (menu.getCategory() == "디저트") {
                 totalDiscount += 2023;
             }
         }
-        return totalDiscount;
+        discountHistory.updateWeekdays(totalDiscount);
+        return discountHistory;
     }
 
-    private static int weekendsDiscount(List<Menus> menus) {
+    private static DiscountHistory weekendsDiscount(DiscountHistory discountHistory, List<Menus> menus) {
         int totalDiscount = 0;
         for (Menus menu: menus) {
-            if (menu.getCategory() == "디저트") {
+            if (menu.getCategory() == "메인") {
                 totalDiscount += 2023;
             }
         }
-        return totalDiscount;
+        discountHistory.updateWeekend(totalDiscount);
+        return discountHistory;
     }
 }
