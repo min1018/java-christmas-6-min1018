@@ -39,7 +39,7 @@ public class User {
         return userBadge;
     }
 
-    
+
     public void moreDiscount(int discountAmount, String whichDiscount) {
         DiscountOption discountOption = DiscountOption.fromString(whichDiscount);
         discountOption.changeDiscountAmount(discountAmount);
@@ -53,9 +53,9 @@ public class User {
         return orderedMenus;
     }
 
-    public int getTotalDiscount(List<DiscountOption> discountOptions) {
+    public int getTotalDiscount() {
         int totalDiscount = 0;
-        for (DiscountOption discount: discountOptions) {
+        for (DiscountOption discount: userDiscount) {
             totalDiscount += discount.getDiscountAmount();
         }
         return totalDiscount;
