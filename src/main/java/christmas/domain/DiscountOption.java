@@ -1,9 +1,7 @@
 package christmas.domain;
 
-import java.util.Arrays;
 
 public enum DiscountOption {
-    NONE("에러", 0),
     dDayDiscount("디데이",0),
     bonusDiscount("증정",0),
     weekdayDiscount("평일",0),
@@ -38,10 +36,7 @@ public enum DiscountOption {
         if ("디데이".equals(whichDiscount)) {
             return dDayDiscount;
         }
-        if ("특별".equals(whichDiscount)) {
-            return specialDiscount;
-        }
-        return NONE;
+        return specialDiscount;
     }
 
 }
