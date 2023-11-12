@@ -56,5 +56,17 @@ public class UserTest {
         user.moreDiscount(1000,"특별");
         assertThat(user.getDiscountAmountForOption("특별")).isEqualTo(1000);
     }
+    @Test
+    @DisplayName("user 객체에서 총 할인 금액을 반환한다.")
+    void totalDiscountAmountTest() {
+        List<Menus> menus;
+        String orders = "타파스-1,제로콜라-1";
+        menus = MenuException.generateForm(orders);
+        User user = new User(24, menus);
+
+        user.moreDiscount(1000,"특별");
+        user.moreDiscount(2023,"주말");
+        assertThat(user.getTotalDiscount()).isEqualTo(3023);
+    }
 
 }
