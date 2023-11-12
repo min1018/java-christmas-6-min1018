@@ -12,12 +12,12 @@ public class User {
     private Badge userBadge;
 
     public User(int date, List<Menus> orderedMenus) {
-        date = this.date;
-        orderedMenus = this.orderedMenus;
+        this.date = date;
+        this.orderedMenus = orderedMenus;
         for(Menus menu : orderedMenus) {
             totalOrderBeforeDiscount += menu.getCount() * menu.getCost();
         }
-        totalOrderBeforeDiscount = this.totalOrderBeforeDiscount;
+        this.totalOrderBeforeDiscount = totalOrderBeforeDiscount;
     }
     public Badge getUserBadge() {
         return userBadge;
@@ -51,12 +51,12 @@ public class User {
         return orderedMenus;
     }
 
-    public int getTotalAmountMenu(List<Menus> menus) {
-        int totalCount = 0;
-        for (Menus menu : menus) {
-            totalCount += menu.getCount();
+    public int getTotalDiscount(List<DiscountOption> discountOptions) {
+        int totalDiscount = 0;
+        for (DiscountOption discount: discountOptions) {
+            totalDiscount += discount.getDiscountAmount();
         }
-        return totalCount;
+        return totalDiscount;
     }
-
+    
 }
