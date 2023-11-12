@@ -1,6 +1,7 @@
 package christmas.domain;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -18,6 +19,7 @@ public class User {
             totalOrderBeforeDiscount += menu.getCount() * menu.getCost();
         }
         this.totalOrderBeforeDiscount = totalOrderBeforeDiscount;
+        this.userDiscount = new ArrayList<>();
     }
     public Badge getUserBadge() {
         return userBadge;
@@ -37,11 +39,11 @@ public class User {
         return userBadge;
     }
 
-    public List<DiscountOption> moreDiscount(int discountAmount, String whichDiscount) {
+    
+    public void moreDiscount(int discountAmount, String whichDiscount) {
         DiscountOption discountOption = DiscountOption.fromString(whichDiscount);
         discountOption.changeDiscountAmount(discountAmount);
         userDiscount.add(discountOption);
-        return userDiscount;
     }
 
     public List<Menus> orderedMenus(String menuName, int count) {
@@ -58,5 +60,10 @@ public class User {
         }
         return totalDiscount;
     }
-    
+
+    public int getDiscountAmountForOption(String targetOption) {
+        DiscountOption targetDiscount = DiscountOption.fromString(targetOption);
+        return targetDiscount.getDiscountAmount();
+    }
+
 }
