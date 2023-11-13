@@ -11,7 +11,7 @@ public class OutputView {
     public static final String EVENT_START = "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
     public static final String ORDER_MENU = "<주문 메뉴>";
     public static final String BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
-    public static final String BONUS_MENU = "<증정 메누>";
+    public static final String BONUS_MENU = "<증정 메뉴>";
     public static final String DETAIL_DISCOUNT = "<혜택 내역>";
     public static final String BONUS_CHAMPAGNE = "샴페인 1개";
     public static final String CHRISTMAS_DDAY = "크리스마스 디데이 할인: -";
@@ -36,13 +36,13 @@ public class OutputView {
 
     static public void printPaymentBeforeDiscount(User user) {
         System.out.println(BEFORE_DISCOUNT);
-        System.out.println(user.getTotalOrderBeforeDiscount()+"원"+"\n");
+        System.out.println(formatNumber(user.getTotalOrderBeforeDiscount())+"원"+"\n");
     }
 
     static public void printBonusDiscount(User user) {
         System.out.println(BONUS_MENU);
         if (user.getDiscountAmountForOption("증정") == 0) {
-            System.out.println("없음");
+            System.out.println("없음\n");
         }
         if (user.getDiscountAmountForOption("증정") != 0) {
             System.out.println(BONUS_CHAMPAGNE+"\n");
@@ -88,11 +88,11 @@ public class OutputView {
 
     static public void printTotalDiscount(User user) {
         System.out.println(ANNOUNCE_DISCOUNT);
-        System.out.println("-"+formatNumber(user.getTotalOrderBeforeDiscount())+WON+"\n");
+        System.out.println("-"+formatNumber(user.getTotalDiscount())+WON+"\n");
     }
     static public void printPaymentAfterDiscount(User user) {
         System.out.println(ANNOUNCE_AFTER_DISCOUNT);
-        System.out.println(formatNumber(user.getTotalOrderBeforeDiscount() - user.getTotalDiscount()) +WON+"\n");
+        System.out.println(formatNumber(user.getTotalOrderBeforeDiscount() - user.getTotalDiscount()+25000) +WON+"\n");
     }
     static public void printBadge(User user) {
         System.out.println(ANNOUNCE_BADGE);
