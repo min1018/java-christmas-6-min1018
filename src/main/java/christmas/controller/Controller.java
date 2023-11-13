@@ -20,6 +20,7 @@ public class Controller {
         showDiscountHistory(user);
     }
     private static User userReservationSetting() {
+        InputView.introducePlanner();
         User user = new User(reservationDateSetting(), reservationMenuSetting());
         return user;
     }
