@@ -6,18 +6,12 @@ import java.util.List;
 public class User {
     private int date;
     private List<Menus> orderedMenus;
-    private int totalOrderBeforeDiscount;
-
     private List<DiscountOption> userDiscount;
-    private Badge userBadge;
+
 
     public User(int date, List<Menus> orderedMenus) {
         this.date = date;
         this.orderedMenus = orderedMenus;
-        for(Menus menu : orderedMenus) {
-            totalOrderBeforeDiscount += menu.getCount() * menu.getCost();
-        }
-        this.totalOrderBeforeDiscount = totalOrderBeforeDiscount;
         this.userDiscount = new ArrayList<>();
     }
 
@@ -28,12 +22,17 @@ public class User {
         return orderedMenus;
     }
     public int getTotalOrderBeforeDiscount() {
+        orderedMenus = getOrderedMenus();
+        int totalOrderBeforeDiscount = 0;
+        for(Menus menu : orderedMenus) {
+            totalOrderBeforeDiscount += menu.getCount() * menu.getCost();
+        }
         return totalOrderBeforeDiscount;
     }
 
     public String whichBadge(int totalDiscount) {
-        this.userBadge = Badge.valueOf(totalDiscount);
-        return userBadge.getBadgeName();
+        Badge badge = Badge.valueOf(totalDiscount);
+        return badge.getBadgeName();
     }
 
     public void moreDiscount(int discountAmount, String whichDiscount) {
