@@ -22,7 +22,7 @@ public class UserTest {
     }
     @Test
     @DisplayName("타파스와 제로콜라 주문시 할인 전의 금액은 8500원이다.")
-    void Test() {
+    void totalOrderBeforeDiscountTest() {
         List<Menus> menus;
         String orders = "타파스-1,제로콜라-1";
         menus = MenuException.generateForm(orders);
