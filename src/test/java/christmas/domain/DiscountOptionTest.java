@@ -19,7 +19,7 @@ public class DiscountOptionTest {
         assertThat(DiscountOption.fromString("특별")).isEqualTo(DiscountOption.specialDiscount);
     }
     @Test
-    @DisplayName("주말을 입력 받을 시 해당하는 DiscountOption을 반환해야 합니다")
+    @DisplayName("할인 금액을 1000원으로 수정시 1000을 반환해야 합니다")
     void specialAmountEqualTest() {
         DiscountOption discountOption = DiscountOption.fromString("특별");
         discountOption.changeDiscountAmount(1000);
