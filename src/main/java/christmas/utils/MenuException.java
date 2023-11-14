@@ -2,6 +2,8 @@ package christmas.utils;
 
 import christmas.domain.Menus;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,22 +25,25 @@ public class MenuException {
 
     public static List<Menus> generateForm(String orders) {
         List<String> eachOrders = List.of(orders.split(","));
-        List<Menus> menus = null;
+
+        List<Menus> menus = new ArrayList<>();
         for (String order: eachOrders) {
-            isOnMenuBoard(order);
-            isCountAboveZero(order);
-            Menus menu = Menus.updateCount(order.split("-")[0], parseInt(order.split("-")[1]));
+            String[] orderSet = order.split("-");
+            isOnMenuBoard(orderSet[0]);
+            isCountAboveZero(orderSet[1]);
+            Menus menu = Menus.valueOf(orderSet[0]);
+            menu.updateCount(parseInt(orderSet[1]));
             menus.add(menu);
         }
         return menus;
     }
-    public static void isOnMenuBoard(String menu) {
-        if (Menus.getCateogoryByNames(menu) == null) {
+    public static void isOnMenuBoard(String menuName) {
+        if (Menus.getCateogoryByNames(menuName) == null){
             throw new IllegalArgumentException(INVALID_ORDER);
         }
     }
-    public static void isCountAboveZero(String menu) {
-        if (parseInt(menu.split("-")[1]) > 0) {
+    public static void isCountAboveZero(String menuCount) {
+        if (parseInt(menuCount) <= 0) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
     }
@@ -50,6 +55,7 @@ public class MenuException {
         if (totalOrder > 20) {
             throw new IllegalArgumentException(INVALID_ORDER);
         }
+
     }
 
     public static void onlyDrinks(List<Menus> menus) {

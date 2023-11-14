@@ -1,6 +1,5 @@
 package christmas.view;
 
-import christmas.domain.DiscountOption;
 import christmas.domain.Menus;
 import christmas.domain.User;
 

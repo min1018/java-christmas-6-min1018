@@ -7,10 +7,10 @@ import java.util.Arrays;
 public enum Menus {
 
     양송이수프("양송이수프", 6000, "애피타이저"),
-    타파스("타파스", 5000, "애피타이저"),
+    타파스("타파스", 5500, "애피타이저"),
     시저샐러드("시저샐러드", 8000, "애피타이저"),
     티본스테이크("티본스테이크",55000, "메인"),
-    바베큐립("바비큐립", 54000, "메인"),
+    바비큐립("바비큐립", 54000, "메인"),
     해산물파스타("해산물파스타", 35000, "메인"),
     크리스마스파스타("크리스마스파스타", 25000, "메인"),
     초코케이크("초코케이크", 15000, "디저트"),
@@ -22,7 +22,6 @@ public enum Menus {
     private final String menuName;
     private final int cost;
     private final String category;
-    private int count;
 
     private static final Map<String, Integer> menuCounts = new HashMap<>();
 
